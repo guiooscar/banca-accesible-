@@ -11,7 +11,7 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="bg-white border-bottom" aria-label="Navegación principal">
+    <nav className="bg-white border-b border-gray-200" aria-label="Navegación principal">
       <div className="container-fluid">
         <ul className="nav nav-underline">
           {navItems.map(item => (

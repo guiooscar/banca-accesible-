@@ -16,17 +16,15 @@ const LoginView = () => {
     const cleanUsername = username.trim()
     const cleanPassword = password.trim()
 
-    console.log('Intentando login con:', { cleanUsername, cleanPassword })
-
     try {
       const user = await authService.login(cleanUsername, cleanPassword)
-      console.log('Respuesta del servicio:', user)
+      console.log('Usuario recibido:', user) // Debug
 
       if (user) {
         localStorage.setItem('authUser', JSON.stringify(user))
         localStorage.setItem('authToken', 'fake-jwt-token-' + user.id)
-        console.log('Usuario guardado en localStorage:', user)
-        navigate('/')
+        console.log('Guardado en localStorage:', user) // Debug
+        navigate('/', { replace: true }) // ← Fuerza redirección
       } else {
         setError('Usuario o contraseña incorrectos')
       }
@@ -37,121 +35,104 @@ const LoginView = () => {
   }
 
   return (
-    <div className="d-flex align-items-center justify-content-center min-vh-100 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
-      <a
-        href="#main-content"
-        className="skip-link position-absolute top-0 start-50 translate-middle-x p-2 bg-white text-blue-700 rounded shadow-sm text-decoration-none fw-bold"
-        aria-label="Saltar al contenido principal"
-      >
-        Saltar al contenido principal
-      </a>
+    <div className="d-flex align-items-center justify-content-center vh-100 bg-primary bg-gradient">
+      <div className="w-100" style={{ maxWidth: '400px' }}>
+        <div className="card shadow-lg rounded-4" role="main">
+          <div className="card-body p-5">
+            <div className="text-center mb-4">
+              <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '64px', height: '64px' }}>
+                <svg className="text-white" width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h2 className="h3 fw-bold">Banca en Línea</h2>
+              <p className="text-muted">Acceda de forma segura a sus cuentas</p>
+            </div>
 
-      <div className="container-fluid">
-        <div className="row justify-content-center">
-          <div className="col-12 col-md-6 col-lg-4">
-            <div
-              className="card shadow-xl border-0 rounded-4 overflow-hidden"
-              role="main"
-              id="main-content"
-            >
-              <div className="card-body p-5">
-                <div className="text-center mb-4">
-                  <div className="bg-white rounded-full d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '64px', height: '64px' }}>
-                    <svg className="text-blue-600" width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <h2 className="h3 fw-bold text-dark">Banca en Línea</h2>
-                  <p className="text-muted small">Acceda de forma segura a sus cuentas</p>
-                </div>
+            {error && (
+              <div className="alert alert-danger" role="alert" aria-live="assertive">
+                {error}
+              </div>
+            )}
 
-                {error && (
-                  <div className="alert alert-danger alert-dismissible fade show" role="alert" aria-live="assertive">
-                    <strong>Error:</strong> {error}
-                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                  </div>
-                )}
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="username" className="form-label">Nombre de usuario o email</label>
+                <input
+                  id="username"
+                  type="text"
+                  className="form-control"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  aria-required="true"
+                  autoComplete="username"
+                />
+              </div>
 
-                <form onSubmit={handleSubmit} className="mt-4">
-                  <div className="mb-3">
-                    <label htmlFor="username" className="form-label text-dark">Nombre de usuario o email</label>
-                    <input
-                      id="username"
-                      type="text"
-                      className="form-control form-control-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                      autoComplete="username"
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="password" className="form-label text-dark">Contraseña</label>
-                    <div className="input-group">
-                      <input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        className="form-control form-control-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        autoComplete="current-password"
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-outline-secondary"
-                        onClick={() => setShowPassword(!showPassword)}
-                        aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-                      >
-                        {showPassword ? '🙈' : '👁️'}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="d-flex justify-content-between align-items-center mb-4">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="remember-me"
-                        aria-label="Recordar mis credenciales"
-                      />
-                      <label className="form-check-label text-dark" htmlFor="remember-me">
-                        Recordar mis credenciales
-                      </label>
-                    </div>
-                    <a href="#" className="text-decoration-none text-primary small">
-                      ¿Olvidó su contraseña?
-                    </a>
-                  </div>
-
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Contraseña</label>
+                <div className="input-group">
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    aria-required="true"
+                    autoComplete="current-password"
+                  />
                   <button
-                    type="submit"
-                    className="w-100 btn btn-primary btn-lg py-3 rounded-3 fw-bold text-white shadow-sm"
-                    aria-label="Iniciar sesión en la banca en línea"
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                   >
-                    Iniciar Sesión
+                    {showPassword ? '🙈' : '👁️'}
                   </button>
-                </form>
-
-                <div className="text-center mt-4">
-                  <p className="text-muted small">
-                    ¿No tiene una cuenta?{' '}
-                    <a href="/register" className="text-decoration-none text-primary">
-                      Regístrese ahora
-                    </a>
-                  </p>
                 </div>
               </div>
 
-              <div className="bg-white border-top border-gray-200 px-5 py-3 text-center">
-                <p className="text-muted small mb-0">
-                  © 2024 Banca en Línea. Todos los derechos reservados.
-                </p>
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="remember"
+                    aria-label="Recordar mis credenciales"
+                  />
+                  <label className="form-check-label" htmlFor="remember">
+                    Recordar mis credenciales
+                  </label>
+                </div>
+                <a href="#" className="text-decoration-none small">¿Olvidó su contraseña?</a>
               </div>
+
+              <button
+                type="submit"
+                className="btn btn-primary w-100 py-3 rounded-3 fw-bold"
+                aria-label="Iniciar sesión en la banca en línea"
+              >
+                Iniciar Sesión
+              </button>
+            </form>
+
+            <div className="text-center mt-4">
+              <p className="text-muted small">
+                ¿No tiene una cuenta?{' '}
+                <a href="/register" className="text-decoration-none">
+                  Regístrese ahora
+                </a>
+              </p>
             </div>
           </div>
+        </div>
+
+        <div className="text-center mt-4">
+          <p className="text-white small">
+            © 2024 Banca en Línea. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </div>

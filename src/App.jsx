@@ -12,21 +12,25 @@ import TransfersView from './views/TransfersView'
 import PaymentsView from './views/PaymentsView'
 import SupportView from './views/SupportView'
 
-const App = () => {
+// Componente interno para usar useNavigate
+const AppContent = () => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log('Cargando usuario desde localStorage...')
     const savedUser = localStorage.getItem('authUser')
     if (savedUser) {
-      const parsedUser = JSON.parse(savedUser)
-      console.log('Usuario cargado:', parsedUser)
-      setUser(parsedUser)
-      navigate('/')
-    } else {
-      console.log('No hay usuario en localStorage')
+      try {
+        const parsedUser = JSON.parse(savedUser)
+        setUser(parsedUser)
+        if (window.location.pathname === '/login' || window.location.pathname === '/register') {
+          navigate('/')
+        }
+      } catch (e) {
+        console.error('Error parsing user from localStorage')
+        localStorage.removeItem('authUser')
+      }
     }
     setLoading(false)
   }, [navigate])
@@ -35,12 +39,12 @@ const App = () => {
     localStorage.removeItem('authUser')
     localStorage.removeItem('authToken')
     setUser(null)
-    navigate('/login')
+    navigate('/login', { replace: true })
   }
 
   if (loading) {
     return (
-      <div className="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+      <div className="d-flex align-items-center justify-content-center min-vh-100">
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
@@ -82,10 +86,12 @@ const App = () => {
   )
 }
 
-const AppWrapper = () => (
-  <Router>
-    <App />
-  </Router>
-)
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  )
+}
 
-export default AppWrapper
+export default App
