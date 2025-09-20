@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "usuario1",
+      "password": "123456",
+      "name": "Usuario Uno"
+    },
+    {
+      "id": "294b",
+      "name": "oscar pinzon guio",
+      "username": "oscar123",
+      "password": "oscar123"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "Cuenta Corriente",
+      "number": "**** 1234",
+      "balance": 25430.5,
+      "currency": "USD"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "Cuenta de Ahorros",
+      "number": "**** 5678",
+      "balance": 12890.75,
+      "currency": "USD"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "type": "Tarjeta de Crédito",
+      "number": "**** 9012",
+      "balance": -1560.25,
+      "currency": "USD"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "description": "Transferencia a Juan Pérez",
+      "amount": -250,
+      "date": "2025-01-15",
+      "category": "Transferencia"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "description": "Depósito Nómina",
+      "amount": 3200,
+      "date": "2025-01-10",
+      "category": "Ingreso"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "description": "Pago Servicios Públicos",
+      "amount": -85.5,
+      "date": "2025-01-08",
+      "category": "Pago"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "description": "Compra Supermercado",
+      "amount": -125.75,
+      "date": "2025-01-05",
+      "category": "Compra"
+    }
+  ]
+}
