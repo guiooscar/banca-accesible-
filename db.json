@@ -2,21 +2,15 @@
   "users": [
     {
       "id": "1",
+      "name": "Usuario Uno",
       "username": "usuario1",
-      "password": "123456",
-      "name": "Usuario Uno"
+      "password": "123456"
     },
     {
-      "id": "294b",
-      "name": "oscar pinzon guio",
-      "username": "oscar123",
-      "password": "oscar123"
-    },
-    {
-      "id": "d8bc",
-      "name": "Danna Sofia Pinzón Martinez",
-      "username": "danna123",
-      "password": "danna123"
+      "id": "2",
+      "name": "Usuario Dos",
+      "username": "usuario2",
+      "password": "123123"
     }
   ],
   "accounts": [
@@ -25,58 +19,176 @@
       "userId": 1,
       "type": "Cuenta Corriente",
       "number": "**** 1234",
-      "balance": 25430.5,
-      "currency": "USD"
+      "balance": 4982100,
+      "currency": "COP"
     },
     {
       "id": "2",
-      "userId": 1,
+      "userId": 2,
       "type": "Cuenta de Ahorros",
       "number": "**** 5678",
-      "balance": 12890.75,
-      "currency": "USD"
-    },
-    {
-      "id": "3",
-      "userId": 1,
-      "type": "Tarjeta de Crédito",
-      "number": "**** 9012",
-      "balance": -1560.25,
-      "currency": "USD"
+      "balance": 3043400,
+      "currency": "COP"
     }
   ],
   "transactions": [
     {
-      "id": "1",
-      "userId": 1,
-      "description": "Transferencia a Juan Pérez",
-      "amount": -250,
-      "date": "2025-01-15",
-      "category": "Transferencia"
+      "id": 1758476542250,
+      "userId": "1",
+      "toUserId": 2,
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "prueba transferencia 1",
+      "amount": 5000,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_out",
+      "status": "completed",
+      "timestamp": "2025-09-21T17:42:22.250Z"
     },
     {
-      "id": "2",
-      "userId": 1,
-      "description": "Depósito Nómina",
-      "amount": 3200,
-      "date": "2025-01-10",
-      "category": "Ingreso"
+      "id": 1758476542259,
+      "userId": 2,
+      "fromUserId": "1",
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "Transferencia recibida: prueba transferencia 1",
+      "amount": 5000,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_in",
+      "status": "completed",
+      "timestamp": "2025-09-21T17:42:22.259Z"
     },
     {
-      "id": "3",
-      "userId": 1,
-      "description": "Pago Servicios Públicos",
-      "amount": -85.5,
-      "date": "2025-01-08",
-      "category": "Pago"
+      "id": 1758477562456,
+      "userId": "2",
+      "toUserId": 2,
+      "fromAccountId": "2",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 5678",
+      "toAccountNumber": "**** 5678",
+      "description": "prueba transferencia 2",
+      "amount": 25500,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_out",
+      "status": "completed",
+      "timestamp": "2025-09-21T17:59:22.456Z"
     },
     {
-      "id": "4",
-      "userId": 1,
-      "description": "Compra Supermercado",
-      "amount": -125.75,
-      "date": "2025-01-05",
-      "category": "Compra"
+      "id": 1758477562466,
+      "userId": 2,
+      "fromUserId": "2",
+      "fromAccountId": "2",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 5678",
+      "toAccountNumber": "**** 5678",
+      "description": "Transferencia recibida: prueba transferencia 2",
+      "amount": 25500,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_in",
+      "status": "completed",
+      "timestamp": "2025-09-21T17:59:22.466Z"
+    },
+    {
+      "id": 1758477606821,
+      "userId": "1",
+      "toUserId": 2,
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "prueba transferencia 3",
+      "amount": 5000,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_out",
+      "status": "completed",
+      "timestamp": "2025-09-21T18:00:06.821Z"
+    },
+    {
+      "id": 1758477606831,
+      "userId": 2,
+      "fromUserId": "1",
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "Transferencia recibida: prueba transferencia 3",
+      "amount": 5000,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_in",
+      "status": "completed",
+      "timestamp": "2025-09-21T18:00:06.831Z"
+    },
+    {
+      "id": "9e83",
+      "userId": "1",
+      "toUserId": 2,
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "regalo",
+      "amount": 4500,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_out",
+      "status": "completed"
+    },
+    {
+      "id": "248e",
+      "userId": 2,
+      "fromUserId": "1",
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "Transferencia recibida: regalo",
+      "amount": 4500,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_in",
+      "status": "completed"
+    },
+    {
+      "id": 1758479371863,
+      "userId": "1",
+      "toUserId": 2,
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "prueba 1",
+      "amount": 3400,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_out",
+      "status": "completed",
+      "timestamp": "2025-09-21T18:29:31.863Z"
+    },
+    {
+      "id": 1758479371871,
+      "userId": 2,
+      "fromUserId": "1",
+      "fromAccountId": "1",
+      "toAccountId": "2",
+      "fromAccountNumber": "**** 1234",
+      "toAccountNumber": "**** 5678",
+      "description": "Transferencia recibida: prueba 1",
+      "amount": 3400,
+      "date": "2025-09-21",
+      "category": "Transferencia",
+      "type": "transfer_in",
+      "status": "completed",
+      "timestamp": "2025-09-21T18:29:31.871Z"
     }
   ]
 }

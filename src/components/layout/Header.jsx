@@ -6,13 +6,12 @@ const Header = ({ user, onLogout }) => {
       <div className="container-fluid">
         <div className="d-flex justify-content-between align-items-center py-3">
           <div className="d-flex align-items-center">
-            <div className="flex-shrink-0">
-              <div className="bg-primary rounded p-2">
-                <svg className="text-white" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-            </div>
+            <img
+              src="/logo-banco.png"
+              alt="Logo del banco"
+              className="img-fluid rounded"
+              style={{ width: '32px', height: '32px' }}
+            />
             <h1 className="ms-3 h4 mb-0 fw-bold text-dark">Banca en Línea</h1>
           </div>
 
