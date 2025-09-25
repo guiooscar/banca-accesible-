@@ -13,6 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Asegurar que html y body ocupen toda la pantalla */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hacer que el contenedor raíz (#root) ocupe toda la pantalla */
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +40,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  /* Removido display: flex y place-items: center */
+  /* Removido min-width y min-height */
 }
 
 h1 {
@@ -65,4 +80,26 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Skip Link accesible - solo visible al enfocar */
+.skip-link {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+  transform: translateX(-50%) translateY(0);
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
 }
